@@ -12,17 +12,45 @@ function isSupported() {
 
 let cachedVoice = null;
 
+// Warmer, more natural female-leaning en-US voices shipped by common OSes.
+const NATURAL_NAMES = /samantha|ava|allison|susan|zoe|nicky|joelle|serena|karen|kathy|nova|jenny|aria|emma|female/i;
+// Name/URI hints that mark a genuinely high-quality (neural) voice.
+const QUALITY_HINT = /premium|enhanced|neural|natural/i;
+// Network-backed neural voices (excellent, but stream to a vendor server).
+const CLOUD_NAME = /google|microsoft.*(online|natural)/i;
+
+// Score every available voice; higher = more human. English only. We give a
+// strong bonus to LOCAL voices so the demo stays offline by default (the
+// header claims "no live integrations") — a cloud neural voice only wins when
+// no decent local voice exists on the machine.
+function scoreVoice(v) {
+  const name = v.name || "";
+  const uri = v.voiceURI || "";
+  const lang = v.lang || "";
+  if (!/^en/i.test(lang)) return -1; // never read English copy in a non-English voice
+  let score = /en[-_]US/i.test(lang) ? 40 : 10;
+  if (v.localService) score += 50; // offline + low-latency + spec-compliant
+  if (QUALITY_HINT.test(name) || QUALITY_HINT.test(uri)) score += 45; // neural/enhanced
+  if (NATURAL_NAMES.test(name)) score += 25;
+  if (CLOUD_NAME.test(name)) score += 15; // still a natural-sounding fallback
+  return score;
+}
+
 function pickVoice() {
   if (!isSupported()) return null;
   try {
     const voices = window.speechSynthesis.getVoices() || [];
     if (voices.length === 0) return null;
-    const preferred =
-      voices.find((v) => /en-US/i.test(v.lang) && /female|samantha|zira|jenny|aria/i.test(v.name)) ||
-      voices.find((v) => /en-US/i.test(v.lang)) ||
-      voices.find((v) => /^en/i.test(v.lang)) ||
-      voices[0];
-    return preferred || null;
+    let best = null;
+    let bestScore = -Infinity;
+    for (const v of voices) {
+      const s = scoreVoice(v);
+      if (s > bestScore) {
+        bestScore = s;
+        best = v;
+      }
+    }
+    return best || voices[0] || null;
   } catch {
     return null;
   }
