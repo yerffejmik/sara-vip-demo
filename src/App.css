@@ -1,0 +1,12 @@
+.app-main {
+  flex: 1;
+  min-height: 0;
+  padding: 20px 32px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main > * {
+  flex: 1;
+  min-height: 0;
+}

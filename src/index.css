@@ -1,0 +1,137 @@
+:root {
+  --blue: #2e5bff;
+  --blue-ink: #12266b;
+  --blue-tint: #ebf1ff;
+  --ink: #0e1b33;
+  --muted: #5b6b85;
+  --line: #dde5f5;
+  --amber: #b26a0b;
+  --amber-tint: #fbf1e3;
+  --green: #1f7a57;
+  --green-tint: #e7f5ef;
+  --white: #ffffff;
+  --radius-sm: 12px;
+  --radius-lg: 16px;
+  --font-head: "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --shadow-card: 0 1px 2px rgba(14, 27, 51, 0.06), 0 8px 24px rgba(14, 27, 51, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-width: 1280px;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-head);
+  margin: 0;
+  color: var(--ink);
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.pill-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+}
+
+.pill-btn:active {
+  transform: scale(0.97);
+}
+
+.pill-btn:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+}
+
+.pill-btn.primary {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.pill-btn.primary:hover {
+  box-shadow: 0 6px 16px rgba(46, 91, 255, 0.35);
+}
+
+.pill-btn.secondary {
+  background: var(--white);
+  color: var(--blue-ink);
+  border: 1px solid var(--line);
+}
+
+.pill-btn.secondary:hover {
+  background: var(--blue-tint);
+}
+
+.pill-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--blue-tint);
+  color: var(--blue-ink);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

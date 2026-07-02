@@ -1,0 +1,217 @@
+.ops-panel {
+  background: var(--blue-tint);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ops-panel-header {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--blue-ink);
+  padding: 16px 20px 10px;
+}
+
+.ops-panel-cards {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ops-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+}
+
+.ops-card-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.ops-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ops-empty {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.schedule-row {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+  transition: background 0.3s ease;
+}
+
+.schedule-row-time {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.schedule-row-detail {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.open-label {
+  color: var(--muted);
+  font-weight: 500;
+  font-style: italic;
+}
+
+.waitlist-line {
+  font-size: 12px;
+  color: var(--blue-ink);
+  font-family: var(--font-mono);
+  padding: 6px 10px;
+  background: var(--blue-tint);
+  border-radius: 8px;
+  animation: fade-in 0.4s ease both;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.tag-blue {
+  background: var(--blue-tint);
+  color: var(--blue-ink);
+}
+
+.tag-amber {
+  background: var(--amber-tint);
+  color: var(--amber);
+}
+
+.tag-link {
+  background: transparent;
+  color: var(--blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.task-card {
+  border: 1px solid var(--amber);
+  background: var(--amber-tint);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.task-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--amber);
+}
+
+.task-meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.sms-bubble {
+  background: var(--green-tint);
+  color: var(--green);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.call-log-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding: 3px 0;
+}
+
+.call-log-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.pulse,
+.pulse-green,
+.glow {
+  animation: pulse-highlight 1.6s ease;
+}
+
+.pulse-green {
+  animation-name: pulse-highlight-green;
+}
+
+.matched {
+  box-shadow: 0 0 0 2px var(--blue);
+}
+
+@keyframes pulse-highlight {
+  0% {
+    background: var(--blue-tint);
+    box-shadow: 0 0 0 3px rgba(46, 91, 255, 0.35);
+  }
+  100% {
+    background: var(--white);
+    box-shadow: none;
+  }
+}
+
+@keyframes pulse-highlight-green {
+  0% {
+    background: var(--green-tint);
+    box-shadow: 0 0 0 3px rgba(31, 122, 87, 0.35);
+  }
+  100% {
+    background: var(--white);
+    box-shadow: none;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse,
+  .pulse-green,
+  .glow,
+  .waitlist-line {
+    animation: none;
+  }
+}

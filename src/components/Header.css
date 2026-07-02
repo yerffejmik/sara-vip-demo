@@ -1,0 +1,26 @@
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 32px;
+  border-bottom: 1px solid var(--line);
+}
+
+.app-header-titles h1 {
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.app-header-sub {
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-top: 3px;
+}
+
+.app-header-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

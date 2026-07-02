@@ -1,0 +1,83 @@
+.live-call-tab {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  gap: 16px;
+}
+
+.tab-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.mode-toggle {
+  display: inline-flex;
+  background: var(--blue-tint);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 4px;
+}
+
+.mode-btn {
+  border: none;
+  background: transparent;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue-ink);
+}
+
+.mode-btn.active {
+  background: var(--white);
+  box-shadow: var(--shadow-card);
+}
+
+.mode-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.split-screen {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
+}
+
+.left-col,
+.right-col {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  gap: 12px;
+}
+
+.choice-tray {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  animation: turn-in 0.3s ease both;
+}
+
+.choice-tray-label {
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.choice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.choice-btn {
+  font-weight: 500;
+}

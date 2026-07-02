@@ -1,0 +1,13 @@
+.app-footer {
+  padding: 12px 32px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.app-footer span {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  cursor: default;
+}
