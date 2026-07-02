@@ -21,6 +21,7 @@ export function useConversationEngine(script, { mode, voiceEnabled, onEvent }) {
 
   const timers = useRef([]);
   const runToken = useRef(0);
+  const runStartMs = useRef(0); // wall-clock time the current run began
   const scriptRef = useRef(script);
   scriptRef.current = script;
   const modeRef = useRef(mode);
@@ -65,7 +66,7 @@ export function useConversationEngine(script, { mode, voiceEnabled, onEvent }) {
     (events || []).forEach((evt) => {
       schedule(() => {
         if (runToken.current !== token) return;
-        onEventRef.current?.(evt);
+        onEventRef.current?.(evt, { elapsedMs: Date.now() - runStartMs.current });
       }, evt.delay || 0);
     });
   }
@@ -140,6 +141,7 @@ export function useConversationEngine(script, { mode, voiceEnabled, onEvent }) {
   const run = useCallback(() => {
     reset();
     const token = runToken.current;
+    runStartMs.current = Date.now();
     setStatus("running");
     schedule(() => goToNode(scriptRef.current.startId, token), 150);
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -13,7 +13,9 @@ export function initialOpsStateTab1(dates) {
   };
 }
 
-export function opsReducerTab1(state, event, dates) {
+import { formatDuration } from "../utils/duration";
+
+export function opsReducerTab1(state, event, dates, meta) {
   switch (event.type) {
     case "record-match":
       return {
@@ -71,7 +73,7 @@ export function opsReducerTab1(state, event, dates) {
       return {
         ...state,
         callLog: {
-          duration: "4m 12s",
+          duration: formatDuration(meta?.elapsedMs),
           disposition: `Completed — 0 staff touches`,
           tags: reduced ? ["reschedule"] : ["reschedule", "insurance-change flag"],
         },

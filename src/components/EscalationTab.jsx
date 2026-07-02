@@ -13,8 +13,8 @@ export default function EscalationTab() {
   const [opsState, setOpsState] = useState(initialOpsStateTab2);
   const voiceSupported = useMemo(() => voiceAvailable(), []);
 
-  const handleEvent = useCallback((evt) => {
-    setOpsState((prev) => opsReducerTab2(prev, evt));
+  const handleEvent = useCallback((evt, meta) => {
+    setOpsState((prev) => opsReducerTab2(prev, evt, meta));
   }, []);
 
   const engine = useConversationEngine(script, { mode: "auto", voiceEnabled, onEvent: handleEvent });

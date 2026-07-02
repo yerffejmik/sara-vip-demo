@@ -17,8 +17,8 @@ export default function LiveCallTab() {
   const voiceSupported = useMemo(() => voiceAvailable(), []);
 
   const handleEvent = useCallback(
-    (evt) => {
-      setOpsState((prev) => opsReducerTab1(prev, evt, dates));
+    (evt, meta) => {
+      setOpsState((prev) => opsReducerTab1(prev, evt, dates, meta));
     },
     [dates]
   );
